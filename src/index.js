@@ -20,7 +20,9 @@ const client = new Client({
     port: DB_PORT,
     ssl: {
         rejectUnauthorized: false
-    }
+    },
+    dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
+
 });
 
 client.connect()

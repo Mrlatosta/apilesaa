@@ -10,7 +10,10 @@ export const pool = new pg.Pool({
      ssl: {
         require: true,
         rejectUnauthorized: false // Configuración básica para SSL
-    }
+    },
+    dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
+
+    
 })
 
 // pool.query('SELECT now()').then(result => {
