@@ -14,7 +14,7 @@ export const pool = new pg.Pool({
     dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
 
     
-})
+});
 
 // pool.query('SELECT now()').then(result => {
 //     console.log(result)
