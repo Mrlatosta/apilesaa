@@ -115,7 +115,7 @@ export const getPlanCliente = async (req,res)=> {
 export const getPlanServices = async (req,res)=> {
     const {id} = req.params;
     //res.send('obteniendo el usuario con id:' + id)
-    const {rows} = await pool.query('select id,cantidad,estudios_microbiologicos,estudios_fisicoquimicos,descripcion,cantidad_de_toma from servicios where pdm = $1 order by id',[id]);
+    const {rows} = await pool.query('select id,cantidad,estudios_microbiologicos,estudios_fisicoquimicos,descripcion,cantidad_de_toma from servicios_plandemuestreo where pdm = $1 order by id',[id]);
     
     if (rows.length === 0){
     return res.status(404).json({message: "Plan not found "});
@@ -126,7 +126,7 @@ export const getPlanServices = async (req,res)=> {
 export const getFolioInfo = async (req,res)=> {
     const {id} = req.params;
     //res.send('obteniendo el usuario con id:' + id)
-    const {rows} = await pool.query('select * from plandemuestreos join servicios ON servicios.pdm = plandemuestreos.nombre_pdm where nombre_pdm = $1',[id]);
+    const {rows} = await pool.query('select * from plandemuestreos join servicios_plandemuestreo ON servicios_plandemuestreo.pdm = plandemuestreos.nombre_pdm where nombre_pdm = $1',[id]);
     
     if (rows.length === 0){
     return res.status(404).json({message: "Plan not found "});

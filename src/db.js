@@ -11,7 +11,7 @@ export const pool = new pg.Pool({
         require: true,
         rejectUnauthorized: false // Configuración básica para SSL
     },
-    dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
+    // dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
 
     
 });

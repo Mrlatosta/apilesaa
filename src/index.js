@@ -21,7 +21,7 @@ const client = new Client({
     ssl: {
         rejectUnauthorized: false
     },
-    dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
+    // dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
 
 });
 
