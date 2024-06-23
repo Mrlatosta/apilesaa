@@ -60,10 +60,10 @@ export const deleteCliente = async (req,res)=> {
     return res.sendStatus(204)
 }
 
-export const updateCliente = async (req,res)=> {
+export const updateServicio = async (req,res)=> {
     const {id} = req.params; 
     const data = req.body;
-    const {rows} = await pool.query('UPDATE clientes set nombre_empresa = $1, direccion = $2 where id = $3 RETURNING *',[data.nombre_empresa,data.direccion,id]);
+    const {rows} = await pool.query('UPDATE servicios_plandemuestreo set cantidad = cantidad - $1 where id = $2 RETURNING *',[data.cantidad,id]);
     console.log(rows)
     //res.send('Actualizando usuario con id: ' + id);
     return res.json(rows[0])
