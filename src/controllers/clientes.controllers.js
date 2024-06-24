@@ -69,6 +69,16 @@ export const updateServicio = async (req,res)=> {
     return res.json(rows[0])
 }
 
+
+export const updateFolio = async (req,res)=> {
+    const {id} = req.params;
+    const data = req.body;
+    const {rows} = await pool.query('UPDATE folios_muestreos set nombre_autoriza_muestras = $1, puesto_autoriza_muestra = $2, nombre_tomador_muestra = $3, puesto_tomador_muestra = $4 where folio = $5 RETURNING *',[data.nombre_autoriza_muestras,data.puesto_autoriza_muestra,data.nombre_tomador_muestra,data.puesto_tomador_muestra,id]);
+    console.log(rows)
+    //res.send('Actualizando usuario con id: ' + id);
+    return res.json(rows[0])
+}
+
 //planesdemuestreos
 
 export const getPlanes = async(req,res)=> {

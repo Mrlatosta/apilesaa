@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { pool } from '../db.js';
-import { getCliente,getClientes,createFolioMuestreo, deleteCliente,updateServicio,getFolios,getPlanes, getFolioInfo, getPlanServices, getDescripciones, getPlanInfo, getPlanCliente, getUltimoFolioMuestreo, createMuestra} from '../controllers/clientes.controllers.js';
+import { getCliente,getClientes,createFolioMuestreo, deleteCliente,updateServicio,getFolios,getPlanes, getFolioInfo, getPlanServices, getDescripciones, getPlanInfo, getPlanCliente, getUltimoFolioMuestreo, createMuestra, updateFolio} from '../controllers/clientes.controllers.js';
 const router = Router();
 
 //largely-peaceful-polecat.ngrok-free.app
@@ -15,6 +15,8 @@ router.post('/crearfoliomuestreo',createFolioMuestreo );
 router.delete('/clientes/:id',deleteCliente);
 
 router.put('/restarservicio/:id', updateServicio);
+
+router.put('/completarfolio/:id',updateFolio)
 
 //Planesdemuestreo
 router.get('/planes',getPlanes)
