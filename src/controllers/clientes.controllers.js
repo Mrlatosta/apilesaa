@@ -153,7 +153,7 @@ export const getClienteLugares = async (req,res)=> {
     if (rows.length === 0){
     return res.status(404).json({message: "Cliente not found "});
     };
-    res.json(rows[0]);
+    res.json(rows);
 }
 
 
