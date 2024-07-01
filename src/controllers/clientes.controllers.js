@@ -54,6 +54,8 @@ export const createLugar = async(req,res)=>{
         const {rows} = await pool.query('insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values($1,$2,$3)',
             [data.cliente_folio,data.nombre_lugar,data.folio_pdm]
         )
+        return res.json(rows)
+
     }catch(error){
         if (error?.code === "23505"){
             return res.status(409).json({message: "Error"})

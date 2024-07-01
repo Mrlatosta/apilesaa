@@ -11,6 +11,9 @@ router.get('/clientes/:id', getCliente);
 
 router.post('/crearfoliomuestreo',createFolioMuestreo );
 
+router.post('/createclientelugar',createLugar)
+
+
 
 router.delete('/clientes/:id',deleteCliente);
 
@@ -29,7 +32,6 @@ router.get('/plan/:id',getPlanServices)
 
 router.get('/clientelugar/:id',getClienteLugares)
 
-router.post('/createclientelugar',createLugar)
 
 router.get('/folio/:id',getFolioInfo)
 
