@@ -13,8 +13,6 @@ router.post('/crearfoliomuestreo',createFolioMuestreo );
 
 router.post('/createclientelugar',createLugar)
 
-
-
 router.delete('/clientes/:id',deleteCliente);
 
 router.put('/restarservicio/:id', updateServicio);

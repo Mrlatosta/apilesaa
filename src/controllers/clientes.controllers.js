@@ -51,7 +51,7 @@ export const createLugar = async(req,res)=>{
     try{
         const data = req.body
 
-        const {rows} = await pool.query('insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values($1,$2,$3)',
+        const {rows} = await pool.query('insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values($1,$2,$3) RETURNING *',
             [data.cliente_folio,data.nombre_lugar,data.folio_pdm]
         )
         return res.json(rows)
