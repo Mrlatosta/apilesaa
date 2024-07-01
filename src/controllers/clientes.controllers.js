@@ -144,6 +144,18 @@ export const getFolioInfo = async (req,res)=> {
     res.json(rows);
 }
 
+//select nombre_lugar from clientes_lugares where cliente_folio = 'FCLHTL-LAB-005'
+export const getClienteLugares = async (req,res)=> {
+    const {id} = req.params;
+    //res.send('obteniendo el usuario con id:' + id)
+    const {rows} = await pool.query('select nombre_lugar from clientes_lugares where cliente_folio = $1',[id]);
+    
+    if (rows.length === 0){
+    return res.status(404).json({message: "Cliente not found "});
+    };
+    res.json(rows);
+}
+
 
 
 export const getDescripciones = async(req,res)=> {
