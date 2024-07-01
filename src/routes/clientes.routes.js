@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { pool } from '../db.js';
-import { getCliente,getClientes,createFolioMuestreo, deleteCliente,updateServicio,getFolios,getPlanes, getFolioInfo, getPlanServices, getDescripciones, getPlanInfo, getPlanCliente, getUltimoFolioMuestreo, createMuestra, updateFolio, getClienteLugares} from '../controllers/clientes.controllers.js';
+import { getCliente,getClientes,createFolioMuestreo, deleteCliente,updateServicio,getFolios,getPlanes, getFolioInfo, getPlanServices, getDescripciones, getPlanInfo, getPlanCliente, getUltimoFolioMuestreo, createMuestra, updateFolio, getClienteLugares, createLugar} from '../controllers/clientes.controllers.js';
 const router = Router();
 
 //largely-peaceful-polecat.ngrok-free.app
@@ -28,6 +28,8 @@ router.get('/plancliente/:id',getPlanCliente)
 router.get('/plan/:id',getPlanServices)
 
 router.get('/clientelugar/:id',getClienteLugares)
+
+router.post('/createclientelugar',createLugar)
 
 router.get('/folio/:id',getFolioInfo)
 

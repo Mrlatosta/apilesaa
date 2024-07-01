@@ -46,6 +46,20 @@ export const createFolioMuestreo = async(req,res)=> {
         }
     }
 }
+//insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values(%s,,'xd')
+export const createLugar = async(req,res)=>{
+    try{
+        const data = req.body
+
+        const {rows} = await pool.query('insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values($1,$2,$3)',
+            [data.cliente_folio,data.nombre_lugar,data.folio_pdm]
+        )
+    }catch(error){
+        if (error?.code === "23505"){
+            return res.status(409).json({message: "Error"})
+        }
+    }
+}
 
 export const deleteCliente = async (req,res)=> {
     const {id} = req.params
