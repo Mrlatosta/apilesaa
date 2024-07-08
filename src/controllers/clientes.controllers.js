@@ -93,7 +93,7 @@ export const getPlanes = async(req,res)=> {
 
 export const getPlanesRecortado = async(req,res)=> {
 
-    const {rows} = await pool.query('SELECT nombre_pdm,pq_atendera,folio_id_cot,fecha_hora_cita,ingeniero_campo FROM plandemuestreos WHERE DATE(fecha_hora_cita) = CURRENT_DATE ORDER BY id;');
+    const {rows} = await pool.query('SELECT nombre_pdm,pq_atendera,folio_id_cot,fecha_hora_cita,ingeniero_campo,clientes.nombre_empresa FROM plandemuestreos join folios ON folios.folio = plandemuestreos.folio_id_cot join clientes ON clientes.folio = folios.cliente_id WHERE DATE(fecha_hora_cita) = CURRENT_DATE;');
     res.json(rows);
     //res.send('obteniendo usuarios');
     //console.log(rows);
