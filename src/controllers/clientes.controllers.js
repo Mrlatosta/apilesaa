@@ -47,21 +47,7 @@ export const createFolioMuestreo = async(req,res)=> {
     }
 }
 //insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values(%s,,'xd')
-export const createLugar = async(req,res)=>{
-    try{
-        const data = req.body
 
-        const {rows} = await pool.query('insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values($1,$2,$3) RETURNING *',
-            [data.cliente_folio,data.nombre_lugar,data.folio_pdm]
-        )
-        return res.json(rows)
-
-    }catch(error){
-        if (error?.code === "23505"){
-            return res.status(409).json({message: "Error"})
-        }
-    }
-}
 
 export const deleteCliente = async (req,res)=> {
     const {id} = req.params
@@ -104,6 +90,16 @@ export const getPlanes = async(req,res)=> {
     //res.send('obteniendo usuarios');
     //console.log(rows);
 }
+
+export const getPlanesRecortado = async(req,res)=> {
+
+    const {rows} = await pool.query('SELECT nombre_pdm,pq_atendera,folio_id_cot,fecha_hora_cita,ingeniero_campo FROM plandemuestreos WHERE DATE(fecha_hora_cita) = CURRENT_DATE ORDER BY id;');
+    res.json(rows);
+    //res.send('obteniendo usuarios');
+    //console.log(rows);
+}
+
+
 
 export const getUltimoFolioMuestreo = async (req,res)=> {
     //res.send('obteniendo el usuario con id:' + id)
@@ -228,6 +224,22 @@ export const createMuestra = async (req, res) => {
       return res.status(500).json({ message: "Error interno del servidor" });
     }
   };
+
+  export const createLugar = async(req,res)=>{
+    try{
+        const data = req.body
+
+        const {rows} = await pool.query('insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values($1,$2,$3) RETURNING *',
+            [data.cliente_folio,data.nombre_lugar,data.folio_pdm]
+        )
+        return res.json(rows)
+
+    }catch(error){
+        if (error?.code === "23505"){
+            return res.status(409).json({message: "Error"})
+        }
+    }
+}
 
 
 
