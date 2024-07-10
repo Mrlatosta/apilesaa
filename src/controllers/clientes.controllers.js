@@ -187,8 +187,8 @@ export const createMuestra = async (req, res) => {
         INSERT INTO muestras(
           registro_muestra, folio_muestreo, fecha_muestreo, hora_muestreo,
           nombre_muestra, id_lab, cantidad_aprox, temperatura, lugar_toma,
-          descripcion_toma, e_micro, e_fisico, observaciones, folio_pdm,servicio_id)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14,$15)
+          descripcion_toma, e_micro, e_fisico, observaciones, folio_pdm,servicio_id,estatus)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14,$15,$16)
         RETURNING *`;
   
       // Parámetros para el query
@@ -207,7 +207,8 @@ export const createMuestra = async (req, res) => {
         data.e_fisico,
         data.observaciones,
         data.folio_pdm,
-        data.servicio_id
+        data.servicio_id,
+        data.estatus
       ];
   
       // Ejecutar el query usando pool.query
