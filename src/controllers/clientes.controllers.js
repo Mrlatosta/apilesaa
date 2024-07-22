@@ -253,7 +253,7 @@ export const createMuestraExtra = async (req, res) => {
   
       // Query para insertar la muestra en la tabla 'muestras'
       const query = `
-        INSERT INTO muestras(
+        INSERT INTO muestras_extra(
           registro_muestra, folio_muestreo, fecha_muestreo, hora_muestreo,
           nombre_muestra, id_lab, cantidad_aprox, temperatura, lugar_toma,
           descripcion_toma, e_micro, e_fisico, observaciones, folio_pdm,estudio_id,estatus)
