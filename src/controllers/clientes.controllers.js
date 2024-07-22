@@ -46,6 +46,26 @@ export const createFolioMuestreo = async(req,res)=> {
         }
     }
 }
+
+
+export const createFolioMuestreoExtra = async(req,res)=> {
+
+    try {
+
+    
+    const data = req.body
+    //console.log(data)
+    const {rows} = await pool.query('INSERT INTO folios_extra(folio, fecha, folio_cliente, folio_pdm) VALUES ($1, $2, $3, $4) RETURNING *', 
+        [data.folio,data.fecha,data.folio_cliente,data.folio_pdm])
+    //console.log({rows})
+    //res.send('Creando usuario')
+    return res.json(rows[0])
+    }catch(error){
+        if (error?.code === "23505"){
+            return res.status(409).json({message: "Error"})
+        }
+    }
+}
 //insert into clientes_lugares(cliente_folio,nombre_lugar,folio_pdm) values(%s,,'xd')
 
 
@@ -208,6 +228,55 @@ export const createMuestra = async (req, res) => {
         data.observaciones,
         data.folio_pdm,
         data.servicio_id,
+        data.estatus
+      ];
+  
+      // Ejecutar el query usando pool.query
+      const { rows } = await pool.query(query, values);
+  
+      // Devolver la primera fila insertada como respuesta
+      return res.json(rows[0]);
+    } catch (error) {
+      // Manejar errores
+      console.error('Error en createMuestra:', error);
+      if (error.code === "23505") {
+        return res.status(409).json({ message: "Error de conflicto de llave única" });
+      }
+      return res.status(500).json({ message: "Error interno del servidor" });
+    }
+  };
+
+  
+export const createMuestraExtra = async (req, res) => {
+    try {
+      const data = req.body;
+  
+      // Query para insertar la muestra en la tabla 'muestras'
+      const query = `
+        INSERT INTO muestras(
+          registro_muestra, folio_muestreo, fecha_muestreo, hora_muestreo,
+          nombre_muestra, id_lab, cantidad_aprox, temperatura, lugar_toma,
+          descripcion_toma, e_micro, e_fisico, observaciones, folio_pdm,estudio_id,estatus)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14,$15,$16)
+        RETURNING *`;
+  
+      // Parámetros para el query
+      const values = [
+        data.registro_muestra,
+        data.folio_muestreo,
+        data.fecha_muestreo,
+        data.hora_muestreo,
+        data.nombre_muestra,
+        data.id_lab,
+        data.cantidad_aprox,
+        data.temperatura,
+        data.lugar_toma,
+        data.descripcion_toma,
+        data.e_micro,
+        data.e_fisico,
+        data.observaciones,
+        data.folio_pdm,
+        data.estudio_id,
         data.estatus
       ];
   
