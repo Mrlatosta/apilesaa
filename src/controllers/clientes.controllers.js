@@ -157,8 +157,7 @@ export const getPlanCliente = async (req,res)=> {
 export const getPlanServices = async (req,res)=> {
     const {id} = req.params;
     //res.send('obteniendo el usuario con id:' + id)
-    const {rows} = await pool.query('select id,cantidad,estudios_microbiologicos,estudios_fisicoquimicos,descripcion,cantidad_de_toma from servicios_plandemuestreo where pdm = $1 order by id',[id]);
-    
+    const {rows} = await pool.query('select servicios_plandemuestreo.id,cantidad,estudios_microbiologicos,estudios_fisicoquimicos,descripcion,cantidad_de_toma,clasificacion from servicios_plandemuestreo join estudios e on servicios_plandemuestreo.estudio_clave_interna = e.clave_interna where pdm = $1 order by id',[id]);
     if (rows.length === 0){
     return res.status(404).json({message: "Plan not found "});
     };
@@ -252,7 +251,7 @@ export const createMuestraExtra = async (req, res) => {
       const data = req.body;
   
       // Query para insertar la muestra en la tabla 'muestras'
-      const query = `
+      const query = ` 
         INSERT INTO muestras_extra(
           registro_muestra, folio_muestreo, fecha_muestreo, hora_muestreo,
           nombre_muestra, id_lab, cantidad_aprox, temperatura, lugar_toma,
