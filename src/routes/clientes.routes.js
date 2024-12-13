@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { pool } from '../db.js';
-import { getCliente,getClientes,createFolioMuestreo, deleteCliente,updateServicio,getFolios,getPlanes, getFolioInfo, getPlanServices, getDescripciones, getPlanInfo, getPlanCliente, getUltimoFolioMuestreo, createMuestra, updateFolio, getClienteLugares, createLugar, getPlanesRecortado, createMuestraExtra, createFolioMuestreoExtra} from '../controllers/clientes.controllers.js';
+import { getCliente,getClientes,createFolioMuestreo, deleteCliente,updateServicio,getFolios,getPlanes, getFolioInfo, getPlanServices, getDescripciones, getPlanInfo, getPlanCliente, getUltimoFolioMuestreo, createMuestra, updateFolio, getClienteLugares, createLugar, getPlanesRecortado, createMuestraExtra, createFolioMuestreoExtra, createFisicoquimicos} from '../controllers/clientes.controllers.js';
 const router = Router();
 
 //largely-peaceful-polecat.ngrok-free.app
@@ -44,5 +44,7 @@ router.get('/ultimofoliomuestreo',getUltimoFolioMuestreo)
 router.post('/crearmuestra',createMuestra)
 
 router.post('/createmuestraextra',createMuestraExtra)
+
+router.post('/createfisicoquimicos', createFisicoquimicos)
 
 export default router;

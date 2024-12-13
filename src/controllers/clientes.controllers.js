@@ -312,4 +312,21 @@ export const createMuestraExtra = async (req, res) => {
 }
 
 
+export const createFisicoquimicos = async(req,res)=>{
+    try{
+        const data = req.body
+
+        const {rows} = await pool.query('insert into muestras_estudios_fq(registro_muestra,hora_analisis,temperatura,ph,clt,clr,crnas,cya,tur) values($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *',
+            [data.registro_muestra,data.hora_analisis,data.temperatura,data.ph,data.clt,data.clr,data.crnas,data.cya,data.tur]
+        )
+        return res.json(rows)
+
+    }catch(error){
+        if (error?.code === "23505"){
+            return res.status(409).json({message: "Error"})
+        }
+    }
+}
+
+
 
