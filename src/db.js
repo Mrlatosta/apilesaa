@@ -7,13 +7,8 @@ export const pool = new pg.Pool({
     password: DB_PASSWORD,
     database: DB_DATABASE,
     port:DB_PORT,
-     ssl: {
-        require: true,
-        rejectUnauthorized: false // Configuración básica para SSL
-    },
+    ssl: false
     // dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
-
-    
 });
 
 // pool.query('SELECT now()').then(result => {
