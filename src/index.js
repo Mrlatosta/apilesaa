@@ -17,18 +17,13 @@ const client = new Client({
     host: DB_HOST,
     database: DB_DATABASE,
     password: DB_PASSWORD,
-    port: DB_PORT,
-    ssl: {
-        rejectUnauthorized: false
-    },
-    // dateStyle: 'ISO, DMY' // Establece el datestyle a dmy
-
+    port: DB_PORT
 });
 
 client.connect()
     .then(() => console.log('Connected to PostgreSQL'))
     .catch(err => console.error('Connection error', err.stack));
 
-app.listen(PORT,'0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log(`Server on port ${PORT}`);
 });
