@@ -12,7 +12,8 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
-çapp.use(authRoutes); // <- monta la ruta de login
+
+app.use(authRoutes); // <- monta la ruta de login
 app.use(clienteRoutes);
 
 
